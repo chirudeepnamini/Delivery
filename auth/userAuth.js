@@ -26,7 +26,7 @@ const signup_post = async (req, res) => {
       res.json({ token });
     })
     .catch((err) => {
-      console.log(err.message);
+      console.log(err);
       res.status(401).json({ error: "error_obj_thrown" });
     });
 };
@@ -47,7 +47,7 @@ const login_post = async (req, res) => {
     }
     //since user exists and password is correct, generate a token and send it
     const token = jwthandler({ id: user._id, type: user.type });
-    console.log("token in login", user);
+    
     res.status(201).json({ token });
   } catch (err) {
     res.status(401).json({ err });
